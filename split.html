@@ -47,10 +47,16 @@
 	</table>
 	<script type="text/javascript">
 	function setCols() {
-		const data = document.getElementById('rows').value.replaceAll('\"','').split("\t").map(a => a.split("\n"));
+		const data =  document.getElementById('rows').value.substring(1,document.getElementById('rows').value.length-1).split("\"").filter(value => value != "\t" && value != "\n").map(text => text.split("\n"));
 		let rows = "";
-		for(var i=0; i <= data[0].length-1; i++) {
-			rows += "\"" + data[0][i] + "\"\t" + data[1][i] + "\n";
+		const length = data.length/2;
+		for(var i=0; i <= length; i++) {
+			if(i % 2 !=0) continue;
+			key = data[i];
+			value = data[i+1];
+			for(var j = 0; j < key.length; j++) {
+				rows += "\"" + key[j] + "\"\t" + value[j] + "\n";
+			}
 		}
 		document.getElementById('cols').value = rows;
 	}
