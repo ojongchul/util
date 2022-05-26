@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>한 줄을 여러 줄로 나누기</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		body {
+			margin: 0 auto;
+			max-width: 50rem;
+			padding: 2rem;
+			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+		}
+
+		h1, h2, h3, p {
+			word-break:keep-all;
+		}
+		.signature {
+			font-family:cursive;
+		}
+	</style>
+    </head>
+    <body>
+	<h1>한 줄을 여러 줄로 나누기</h1>
+	<table style="width: 100%;">
+		<tr>
+			<td colspan="3" style="text-align:right;">
+				<img src="./lkretail.png" style="width:100px;" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<textarea id="rows" style="width:100%;height:500px;"></textarea>
+			</td>
+			<td style="text-align: center">
+				<button onclick="setCols()">바꿔줘</button>
+			</td>
+			<td>
+				<textarea id="cols" style="width:100%;height:500px;"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="text-align:right;">
+				<span class="signature">made by lee</span>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+	function setCols() {
+		const data = document.getElementById('rows').value.replaceAll('\"','').split("\t").map(a => a.split("\n"));
+		let rows = "";
+		for(var i=0; i <= data[0].length-1; i++) {
+			rows += "\"" + data[0][i] + "\"\t" + data[1][i] + "\n";
+		}
+		document.getElementById('cols').value = rows;
+	}
+	</script>
+	</body>
+</html>
